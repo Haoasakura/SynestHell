@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public DashState dashState;
     public float dashTimer;
     public float maxDash = 1f;
+    public bool canMove=true;
 
     public Vector2 savedVelocity;
 
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
     void Update() {
         m_horizontal = Input.GetAxisRaw("Horizontal");
         m_vertical = Input.GetAxisRaw("Vertical");
+
     }
 
     private void FixedUpdate() {
@@ -45,6 +47,7 @@ public class PlayerController : MonoBehaviour
                     savedVelocity = m_rigidbody.velocity;
                     m_rigidbody.AddForce(velocity.normalized * 50, ForceMode2D.Impulse);
                     dashState = DashState.Dashing;
+                    GetComponent<PlayerHealth>().invulnerable=true;
                 }
                 break;
             case DashState.Dashing:
@@ -53,6 +56,7 @@ public class PlayerController : MonoBehaviour
                     dashTimer = maxDash;
                     m_rigidbody.velocity = savedVelocity;
                     dashState = DashState.Cooldown;
+                    GetComponent<PlayerHealth>().invulnerable=false;
                 }
                 break;
             case DashState.Cooldown:

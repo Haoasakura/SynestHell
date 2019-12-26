@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Note : MonoBehaviour
 {
+    public int damage=1;
     public Vector2 dir;
     public float speed = 10f;
     private SpriteRenderer m_SpriteRenderer;
@@ -19,11 +20,6 @@ public class Note : MonoBehaviour
         StartCoroutine("Fade");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     IEnumerator Fade() {
         while(m_SpriteRenderer.color.a > 0f) {
@@ -36,7 +32,11 @@ public class Note : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if(!(collision.gameObject.CompareTag("Note") || collision.gameObject.CompareTag("Enemy")))
+        if(collision.gameObject.CompareTag("Player")) {
+            collision.GetComponent<PlayerHealth>().TakeDamage(damage);
+            Destroy(gameObject);
+        }
+        else if(collision.gameObject.CompareTag("Wall"))
             Destroy(gameObject);
     }
 }

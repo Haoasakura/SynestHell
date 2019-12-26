@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class WeaponController : MonoBehaviour
 {
     bool isAttacking = false;
+     bool isCollecting = false;
     public Text charges;
 
     public int charge = 0;
@@ -19,17 +20,32 @@ public class WeaponController : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0)) {
             GetComponent<Animation>().Play();
+            isCollecting=false;
+            isAttacking=true;
         }
-        isAttacking = GetComponent<Animation>().isPlaying;
+        else if(Input.GetMouseButtonDown(1)) {
+            GetComponent<Animation>().Play();
+            isAttacking=false;
+            isCollecting=true;
+        }
+
+        if(!GetComponent<Animation>().isPlaying)
+        {
+            isAttacking=false;
+            isCollecting=false;
+        }
 
 
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if(isAttacking && collision.gameObject.CompareTag("Note")) {
+        if(isCollecting && collision.gameObject.CompareTag("Note")) {
             charge++;
             charges.text = "Charges : " + charge;
             Destroy(collision.gameObject);
+        }
+        if(isAttacking && collision.gameObject.CompareTag("Note")) {
+            collision.GetComponent<Rigidbody2D>().velocity*=-1;
         }
     }
 }
