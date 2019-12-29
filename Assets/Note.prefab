@@ -132,5 +132,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ddbd33ae77eaee4eba6ae553805c017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
   dir: {x: 0, y: 0}
   speed: 5
+  colors:
+  - {r: 0.0014920235, g: 0, b: 1, a: 1}
+  - {r: 0.08528972, g: 1, b: 0, a: 1}
+  - {r: 0.9401312, g: 0, b: 1, a: 1}
+  - {r: 1, g: 0.9435248, b: 0, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  reflected: 0

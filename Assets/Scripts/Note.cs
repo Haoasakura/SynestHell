@@ -10,10 +10,14 @@ public class Note : MonoBehaviour
     public float speed = 10f;
     private SpriteRenderer m_SpriteRenderer;
 
+    public Color[] colors;
+    public bool reflected=false;
     // Start is called before the first frame update
     void Start()
     {
+
         m_SpriteRenderer = GetComponent<SpriteRenderer>();
+        m_SpriteRenderer.color=colors[Random.Range(0, colors.Length)];
         if(dir != null)
             GetComponent<Rigidbody2D>().velocity = dir.normalized*speed;
 
@@ -38,5 +42,12 @@ public class Note : MonoBehaviour
         }
         else if(collision.gameObject.CompareTag("Wall"))
             Destroy(gameObject);
+
+        else if(reflected && collision.gameObject.CompareTag("Enemy")) {
+            collision.GetComponent<EnemyHealth>().TakeDamage(damage);
+            Destroy(gameObject);
+        }
+            
+        
     }
 }

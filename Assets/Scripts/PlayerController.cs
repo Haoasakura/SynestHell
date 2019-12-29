@@ -34,6 +34,11 @@ public class PlayerController : MonoBehaviour
         m_horizontal = Input.GetAxisRaw("Horizontal");
         m_vertical = Input.GetAxisRaw("Vertical");
 
+        Vector3 difference =  Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        float rotationZ = Mathf.Atan2(-difference.x, difference.y) * Mathf.Rad2Deg;
+       
+        transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
+
     }
 
     private void FixedUpdate() {

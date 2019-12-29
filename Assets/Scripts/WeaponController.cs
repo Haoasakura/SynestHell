@@ -46,6 +46,10 @@ public class WeaponController : MonoBehaviour
         }
         if(isAttacking && collision.gameObject.CompareTag("Note")) {
             collision.GetComponent<Rigidbody2D>().velocity*=-1;
+            collision.GetComponent<Note>().reflected = true;
         }
+        //if(collision.gameObject.CompareTag("Enemy")) {
+        //    collision.GetComponent<EnemyHealth>().TakeDamage(1);
+        //}
     }
 }
