@@ -16,6 +16,7 @@ public class EnemyController : MonoBehaviour
     float m_angleinterval;
     
     public bool canShoot=true;
+    private float angle=0;
     void Start()
     {
         m_angleinterval = 360f / spawnAtTime;
@@ -26,7 +27,8 @@ public class EnemyController : MonoBehaviour
         spawnTimer -= Time.deltaTime;
         if(canShoot && spawnTimer <= 0) {
             spawnTimer = maxSpawn;
-            float angle = Random.Range(0f, 360f);
+            //float angle = Random.Range(0f, 360f);
+            angle = angle==0f?27.5f:0;
             for(int i = 0; i < spawnAtTime; i++) {
                 spawnPosition = new Vector2(transform.position.x, transform.position.y) ;
                 
@@ -36,7 +38,7 @@ public class EnemyController : MonoBehaviour
                 Vector2 dir = new Vector2(Mathf.Cos(mAngle), Mathf.Sin(mAngle));
 
                
-                projectile.GetComponent<Note>().dir = dir;
+                projectile.GetComponent<Note>().m_dir = dir;
             }
 
         }

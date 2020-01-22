@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField]
-    private int life=3;
-    private int health=10;
-    private int defaultHealth=10;
-    private int barrier=10;
-    private int defaultBarrier=10;
+    private int m_life=3;
+    private int m_health=10;
+    private int m_defaultHealth=10;
+    private int m_barrier=10;
+    private int m_defaultBarrier=10;
 
     public Image[] lifes;
     public Slider barrierHealth;
@@ -24,22 +24,22 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(int damage) {
         barrierHealth.value--;
-        if(barrier>0) {
-            barrier-=damage;
-            if(barrier<=0)
+        if(m_barrier>0) {
+            m_barrier-=damage;
+            if(m_barrier<=0)
                 ChangeSlider(false);
         }
-        else if(health>0) {
-            health-=damage;
+        else if(m_health>0) {
+            m_health-=damage;
         }
         else {
-            life--;
-            lifes[life].enabled =false;
-            if(life<=0)
+            m_life--;
+            lifes[m_life].enabled =false;
+            if(m_life<=0)
                 Die();
             else {
-                barrier=defaultBarrier;
-                health=defaultHealth;
+                m_barrier=m_defaultBarrier;
+                m_health=m_defaultHealth;
                 ChangeSlider(true);
             }
             
@@ -51,17 +51,17 @@ public class EnemyHealth : MonoBehaviour
         if(barrierSlider) {
             sliderFill.color=Color.blue;
             sliderBackground.color=Color.green;
-            barrierHealth.value=defaultBarrier;
+            barrierHealth.value=m_defaultBarrier;
         }
         else {
             sliderFill.color=Color.green;
             sliderBackground.color=Color.red;
-            barrierHealth.value=defaultHealth;
+            barrierHealth.value=m_defaultHealth;
         }
     }
 
     private void Die() {
-        GetComponent<EnemyController>().canShoot=false;
+        GetComponent<EnemyShootController>().m_canShoot=false;
         Destroy(gameObject);
 ;    }
 }

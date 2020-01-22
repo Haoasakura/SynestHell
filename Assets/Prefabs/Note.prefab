@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 299edbbe0a3fd9b47961f9792d1f1c3c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 349567ee8078b8e4a9dbeed0f027bfbe, type: 3}
   m_Color: {r: 0, g: 0.08628178, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -132,13 +132,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ddbd33ae77eaee4eba6ae553805c017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
-  dir: {x: 0, y: 0}
-  speed: 5
-  colors:
-  - {r: 0.0014920235, g: 0, b: 1, a: 1}
-  - {r: 0.08528972, g: 1, b: 0, a: 1}
-  - {r: 0.9401312, g: 0, b: 1, a: 1}
-  - {r: 1, g: 0.9435248, b: 0, a: 1}
+  m_damage: 1
+  m_dir: {x: 0, y: 0}
+  m_speed: 5
+  m_colors:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0.98977304, g: 1, b: 0, a: 1}
+  - {r: 0.14971161, g: 1, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0.8273995, a: 1}
+  - {r: 0, g: 0.14216995, b: 1, a: 1}
+  - {r: 1, g: 0, b: 0.97662354, a: 1}
+  - {r: 0.41902542, g: 0, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
-  reflected: 0
+  m_reflected: 0
+  m_doubleNote: {fileID: 7639704530961721957, guid: 97c114b25da7af94585cf6b519f878f6,
+    type: 3}

@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class WeaponController : MonoBehaviour
 {
-    bool isAttacking = false;
-     bool isCollecting = false;
+    bool m_isAttacking = false;
+     bool m_isCollecting = false;
     public Text charges;
 
-    public int charge = 0;
+    public int m_charge = 0;
     void Start()
     {
         charges.text = "Charges : 0";
@@ -20,33 +20,33 @@ public class WeaponController : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0)) {
             GetComponent<Animation>().Play();
-            isCollecting=false;
-            isAttacking=true;
+            m_isCollecting=false;
+            m_isAttacking=true;
         }
         else if(Input.GetMouseButtonDown(1)) {
             GetComponent<Animation>().Play();
-            isAttacking=false;
-            isCollecting=true;
+            m_isAttacking=false;
+            m_isCollecting=true;
         }
 
         if(!GetComponent<Animation>().isPlaying)
         {
-            isAttacking=false;
-            isCollecting=false;
+            m_isAttacking=false;
+            m_isCollecting=false;
         }
 
 
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if(isCollecting && collision.gameObject.CompareTag("Note")) {
-            charge++;
-            charges.text = "Charges : " + charge;
+        if(m_isCollecting && collision.gameObject.CompareTag("Note")) {
+            m_charge++;
+            charges.text = "Charges : " + m_charge;
             Destroy(collision.gameObject);
         }
-        if(isAttacking && collision.gameObject.CompareTag("Note")) {
+        if(m_isAttacking && collision.gameObject.CompareTag("Note")) {
             collision.GetComponent<Rigidbody2D>().velocity*=-1;
-            collision.GetComponent<Note>().reflected = true;
+            collision.GetComponent<Note>().m_reflected = true;
         }
         //if(collision.gameObject.CompareTag("Enemy")) {
         //    collision.GetComponent<EnemyHealth>().TakeDamage(1);
