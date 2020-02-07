@@ -16,10 +16,10 @@ public class PlayerHealth : MonoBehaviour
 
     void Update() {
         if(invulnerable){
-            GetComponent<SpriteRenderer>().color=Color.white;
+            GetComponent<SpriteRenderer>().color=Color.green;
         }
         else {
-             GetComponent<SpriteRenderer>().color=Color.green;
+             GetComponent<SpriteRenderer>().color=Color.white;
         }
     }
 

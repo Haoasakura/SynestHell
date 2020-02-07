@@ -39,12 +39,12 @@ public class WeaponController : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if(m_isCollecting && collision.gameObject.CompareTag("Note")) {
+        if(m_isCollecting && (collision.gameObject.CompareTag(Tags.Note) || collision.gameObject.CompareTag(Tags.DNote))) {
             m_charge++;
             charges.text = "Charges : " + m_charge;
             Destroy(collision.gameObject);
         }
-        if(m_isAttacking && collision.gameObject.CompareTag("Note")) {
+        if(m_isAttacking && (collision.gameObject.CompareTag(Tags.Note) || collision.gameObject.CompareTag(Tags.DNote))) {
             collision.GetComponent<Rigidbody2D>().velocity*=-1;
             collision.GetComponent<Note>().m_reflected = true;
         }
